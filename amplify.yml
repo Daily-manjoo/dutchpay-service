@@ -3,32 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm install --legacy-peer-deps
+        - aws ssm get-parameter --name "/dutchpay-service/ACCESS_KEY_ID" --with-decryption --query "Parameter.Value" --output text > .env
+        - aws ssm get-parameter --name "/dutchpay-service/SECRET_ACCESS_KEY" --with-decryption --query "Parameter.Value" --output text >> .env
+        - npm ci
     build:
       commands:
         - npm run build
-  artifacts:
-    baseDirectory: build
-    files:
-      - "**/*"
-  cache:
-    paths:
-      - node_modules/**/*
-
-backend:
-  phases:
-    build:
-      commands:
-        - amplifyPush --simple
-  artifacts:
-    baseDirectory: amplify/#current-cloud-backend
-    files:
-      - "**/*"
-  cache:
-    paths:
-      - amplify/.cache/**/*
-
-test:
   artifacts:
     baseDirectory: build
     files:
