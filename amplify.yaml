@@ -1,0 +1,38 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install --legacy-peer-deps
+    build:
+      commands:
+        - npm run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+
+backend:
+  phases:
+    build:
+      commands:
+        - amplifyPush --simple
+  artifacts:
+    baseDirectory: amplify/#current-cloud-backend
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - amplify/.cache/**/*
+
+test:
+  artifacts:
+    baseDirectory: build
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
