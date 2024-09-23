@@ -1,3 +1,10 @@
+import OverlayForm from "./OverlayForm";
+
 export default function AddMembers() {
-  return <div>Add Members Component</div>;
+  return (
+    <div>
+      AddMembers
+      <OverlayForm />
+    </div>
+  );
 }
