@@ -1,3 +1,6 @@
+import LeftPannel from "./LeftPannel";
+import RightPannel from "./RightPannel";
+
 export default function ExpenseMain() {
   return (
     <div>

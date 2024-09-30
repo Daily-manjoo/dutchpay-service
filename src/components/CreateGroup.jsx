@@ -1,10 +1,17 @@
 import OverlayForm from "./OverlayForm";
+import styled from "styled-components";
 
 export default function CreateGroup() {
   return (
-    <div>
-      CreateGroup
+    <StyledMain>
+      <h1>모임의 끝</h1>
       <OverlayForm />
-    </div>
+    </StyledMain>
   );
 }
+
+const StyledMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
