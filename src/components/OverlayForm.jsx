@@ -2,24 +2,24 @@ import styled from "styled-components";
 
 export default function OverlayForm() {
   return (
-    <StyledOverlayForm>
-      <StyledGroupImgDiv />
-      <StyledSetGroupDiv>
+    <OverlayForm>
+      <GroupImgDiv />
+      <SetGroupDiv>
         <h2>모임 이름 정하기</h2>
         <p>먼저 더치페이 할 모임의 이름을 정해볼까요?</p>
-        <StyledGroupLabelDiv>
+        <GroupLabelDiv>
           <p>모임명</p>
-          <StyledGroupNameInput />
-        </StyledGroupLabelDiv>
-        <StyledGroupNameSaveButton>
+          <GroupNameInput />
+        </GroupLabelDiv>
+        <GroupNameSaveButton>
           <p>저장하고 다음 단계로</p>
-        </StyledGroupNameSaveButton>
-      </StyledSetGroupDiv>
-    </StyledOverlayForm>
+        </GroupNameSaveButton>
+      </SetGroupDiv>
+    </OverlayForm>
   );
 }
 
-const StyledOverlayForm = styled.div`
+const OverlayForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@ const StyledOverlayForm = styled.div`
   background-color: beige;
 `;
 
-const StyledGroupImgDiv = styled.div`
+const GroupImgDiv = styled.div`
   margin: 40px;
   width: 332px;
   height: 141px;
@@ -37,7 +37,7 @@ const StyledGroupImgDiv = styled.div`
   background-position: center;
 `;
 
-const StyledSetGroupDiv = styled.div`
+const SetGroupDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +51,7 @@ const StyledSetGroupDiv = styled.div`
   }
 `;
 
-const StyledGroupLabelDiv = styled.label`
+const GroupLabelDiv = styled.label`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +64,7 @@ const StyledGroupLabelDiv = styled.label`
   }
 `;
 
-const StyledGroupNameInput = styled.input`
+const GroupNameInput = styled.input`
   width: 210px;
   border: 1px solid black;
   flex-grow: 1;
@@ -72,7 +72,7 @@ const StyledGroupNameInput = styled.input`
   padding: 4px;
 `;
 
-const StyledGroupNameSaveButton = styled.button`
+const GroupNameSaveButton = styled.button`
   background-color: #7749f8;
   margin-top: 15px;
   border: none;
