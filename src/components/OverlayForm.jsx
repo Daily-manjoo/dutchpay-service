@@ -1,31 +1,64 @@
 import styled from "styled-components";
+import OverlayWrapper from "./shared/OverlayWrapper";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { errorMessageState, groupNameState } from "../state/GroupName";
 
-export default function OverlayForm() {
+export default function OverlayForm({ children }) {
+  const [groupName, setGroupName] = useRecoilState(groupNameState);
+  const [errorMessage, setErrorMessage] = useRecoilState(errorMessageState);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!groupName.trim()) {
+      setErrorMessage("그룹명을 입력해주세요.");
+    } else {
+      setErrorMessage("");
+    }
+  };
+
   return (
-    <OverlayForm>
-      <GroupImgDiv />
-      <SetGroupDiv>
-        <h2>모임 이름 정하기</h2>
-        <p>먼저 더치페이 할 모임의 이름을 정해볼까요?</p>
-        <GroupLabelDiv>
-          <p>모임명</p>
-          <GroupNameInput />
-        </GroupLabelDiv>
-        <GroupNameSaveButton>
-          <p>저장하고 다음 단계로</p>
-        </GroupNameSaveButton>
-      </SetGroupDiv>
-    </OverlayForm>
+    <Container>
+      <OverlayWrapper>
+        {children}
+        <GroupImgDiv />
+        <SetGroupForm noValidate onSubmit={handleSubmit}>
+          <h2>모임 이름 정하기</h2>
+          <p>먼저 더치페이 할 모임의 이름을 정해볼까요?</p>
+          <GroupLabel htmlFor="groupName">
+            <p>모임명</p>
+          </GroupLabel>
+          <GroupNameInput
+            type="text"
+            required
+            placeholder="24년 부산 여행"
+            id="groupName"
+            value={groupName}
+            onChange={(e) => setGroupName(e.target.value)}
+          />
+          {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+          <GroupNameSaveButton
+            type="submit"
+            disabled={!groupName.trim()}
+            aria-label="저장하고 다음 단계로"
+          >
+            <p>저장하고 다음 단계로</p>
+          </GroupNameSaveButton>
+        </SetGroupForm>
+      </OverlayWrapper>
+    </Container>
   );
 }
 
-const OverlayForm = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 412px;
-  height: 532px;
+  width: 50vw;
+  min-height: 100vh;
   background-color: beige;
+  filter: drop-shadow(8px 4px 4px rgba(0, 0, 0, 0.2));
+  border-radius: 10px;
 `;
 
 const GroupImgDiv = styled.div`
@@ -37,13 +70,12 @@ const GroupImgDiv = styled.div`
   background-position: center;
 `;
 
-const SetGroupDiv = styled.div`
+const SetGroupForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   width: 100%;
-  height: 228px;
   background-color: white;
 
   h2 {
@@ -51,12 +83,11 @@ const SetGroupDiv = styled.div`
   }
 `;
 
-const GroupLabelDiv = styled.label`
+const GroupLabel = styled.label`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 240px;
-  height: 70px;
 
   p {
     margin: 0 0 8 0px;
@@ -78,4 +109,10 @@ const GroupNameSaveButton = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
+`;
+
+const ErrorText = styled.p`
+  margin-bottom: 0;
+  color: red;
+  font-size: 14px;
 `;

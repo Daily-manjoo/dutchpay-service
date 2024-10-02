@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export default function CreateGroup() {
   return (
-    <StyledMain>
+    <MainContainer>
       <h1>모임의 끝</h1>
       <OverlayForm />
-    </StyledMain>
+    </MainContainer>
   );
 }
 
-const StyledMain = styled.div`
+const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
