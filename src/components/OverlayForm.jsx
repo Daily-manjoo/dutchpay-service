@@ -31,17 +31,13 @@ export default function OverlayForm({ children }) {
           <GroupNameInput
             type="text"
             required
-            placeholder="24년 부산 여행"
+            placeholder="2024 제주도 여행"
             id="groupName"
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
           />
           {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
-          <GroupNameSaveButton
-            type="submit"
-            disabled={!groupName.trim()}
-            aria-label="저장하고 다음 단계로"
-          >
+          <GroupNameSaveButton type="submit" aria-label="저장하고 다음 단계로">
             <p>저장하고 다음 단계로</p>
           </GroupNameSaveButton>
         </SetGroupForm>
