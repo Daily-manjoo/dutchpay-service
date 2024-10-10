@@ -20,9 +20,9 @@ export default function OverlayForm({ children }) {
   return (
     <Container>
       <OverlayWrapper>
-        {children}
         <GroupImgDiv />
         <SetGroupForm noValidate onSubmit={handleSubmit}>
+          {children}
           <h2>모임 이름 정하기</h2>
           <p>먼저 더치페이 할 모임의 이름을 정해볼까요?</p>
           <GroupLabel htmlFor="groupName">
@@ -31,17 +31,13 @@ export default function OverlayForm({ children }) {
           <GroupNameInput
             type="text"
             required
-            placeholder="24년 부산 여행"
+            placeholder="2024 제주도 여행"
             id="groupName"
             value={groupName}
             onChange={(e) => setGroupName(e.target.value)}
           />
           {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
-          <GroupNameSaveButton
-            type="submit"
-            disabled={!groupName.trim()}
-            aria-label="저장하고 다음 단계로"
-          >
+          <GroupNameSaveButton type="submit" aria-label="저장하고 다음 단계로">
             <p>저장하고 다음 단계로</p>
           </GroupNameSaveButton>
         </SetGroupForm>
@@ -55,8 +51,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 50vw;
-  min-height: 100vh;
-  background-color: beige;
+  min-height: 90vh;
+  background-color: #fff;
   filter: drop-shadow(8px 4px 4px rgba(0, 0, 0, 0.2));
   border-radius: 10px;
 `;
@@ -109,6 +105,11 @@ const GroupNameSaveButton = styled.button`
   border: none;
   border-radius: 5px;
   color: white;
+
+  &:hover {
+    background-color: #7736ee;
+    cursor: pointer;
+  }
 `;
 
 const ErrorText = styled.p`

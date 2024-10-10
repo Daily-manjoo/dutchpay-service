@@ -5,5 +5,6 @@ export default function OverlayWrapper({ children }) {
 }
 
 const Container = styled.div`
-  min-height: ${(props) => props.minHeight || "0"};
+  padding: ${(props) => props.padding || "5vw"};
+  min-height: 100%;
 `;

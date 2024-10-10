@@ -1,8 +1,7 @@
-/** @type {import('jest').config} */
-
+/** @type {import('jest').Config} */
 const config = {
   verbose: true,
   testEnvironment: "jsdom",
 };
 
-module.export = config;
+module.exports = config;
