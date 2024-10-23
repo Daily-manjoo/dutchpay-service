@@ -6,6 +6,6 @@ export const groupNameState = atom({
 });
 
 export const errorMessageState = atom({
-  key: "errorMessage",
+  key: "groupErrorMessage",
   default: "",
 });

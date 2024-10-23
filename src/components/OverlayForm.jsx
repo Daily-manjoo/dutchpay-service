@@ -1,42 +1,48 @@
 import styled from "styled-components";
 import OverlayWrapper from "./shared/OverlayWrapper";
-import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { errorMessageState, groupNameState } from "../state/GroupName";
 
-export default function OverlayForm({ children }) {
-  const [groupName, setGroupName] = useRecoilState(groupNameState);
-  const [errorMessage, setErrorMessage] = useRecoilState(errorMessageState);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!groupName.trim()) {
-      setErrorMessage("그룹명을 입력해주세요.");
-    } else {
-      setErrorMessage("");
-    }
-  };
-
+export default function OverlayForm({
+  title,
+  description,
+  label,
+  placeholder,
+  value,
+  onChange,
+  onSubmit,
+  errorMessage,
+  members = [],
+  onDeleteMember,
+}) {
   return (
     <Container>
       <OverlayWrapper>
         <GroupImgDiv />
-        <SetGroupForm noValidate onSubmit={handleSubmit}>
-          {children}
-          <h2>모임 이름 정하기</h2>
-          <p>먼저 더치페이 할 모임의 이름을 정해볼까요?</p>
-          <GroupLabel htmlFor="groupName">
-            <p>모임명</p>
+        <SetGroupForm noValidate onSubmit={onSubmit}>
+          <h2>{title}</h2>
+          <p>{description}</p>
+          <GroupLabel htmlFor="inputField">
+            <p>{label}</p>
           </GroupLabel>
           <GroupNameInput
             type="text"
             required
-            placeholder="2024 제주도 여행"
-            id="groupName"
-            value={groupName}
-            onChange={(e) => setGroupName(e.target.value)}
+            placeholder={placeholder}
+            id="inputField"
+            value={value}
+            onChange={onChange}
+            data-testid="input-member-names"
           />
           {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+          <TagContainer>
+            {members.map((member, index) => (
+              <Tag key={index}>
+                {member}
+                <DeleteButton onClick={() => onDeleteMember(member)}>
+                  X
+                </DeleteButton>
+              </Tag>
+            ))}
+          </TagContainer>
           <GroupNameSaveButton type="submit" aria-label="저장하고 다음 단계로">
             <p>저장하고 다음 단계로</p>
           </GroupNameSaveButton>
@@ -86,7 +92,7 @@ const GroupLabel = styled.label`
   width: 240px;
 
   p {
-    margin: 0 0 8 0px;
+    margin: 0 0 8px 0;
     font-weight: 800;
   }
 `;
@@ -97,6 +103,38 @@ const GroupNameInput = styled.input`
   flex-grow: 1;
   border-radius: 4px;
   padding: 4px;
+`;
+
+const TagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+`;
+
+const Tag = styled.span`
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 15px;
+  padding: 5px 10px;
+  margin: 5px;
+  font-size: 14px;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ddd;
+  }
+`;
+
+const DeleteButton = styled.button`
+  background: none;
+  border: none;
+  color: red;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    color: darkred;
+  }
 `;
 
 const GroupNameSaveButton = styled.button`

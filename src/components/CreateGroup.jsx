@@ -1,11 +1,35 @@
+import { useRecoilState } from "recoil";
+import { groupNameState, errorMessageState } from "../state/GroupName";
 import OverlayForm from "./OverlayForm";
 import styled from "styled-components";
 
 export default function CreateGroup() {
+  const [groupName, setGroupName] = useRecoilState(groupNameState);
+  const [errorMessage, setErrorMessage] = useRecoilState(errorMessageState);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!groupName.trim()) {
+      setErrorMessage("그룹명을 입력해주세요.");
+    } else {
+      setErrorMessage("");
+      // 추가 로직 (예: 서버로 데이터 전송 등)
+    }
+  };
+
   return (
     <MainContainer>
       <h1>Dutch Pay</h1>
-      <OverlayForm />
+      <OverlayForm
+        title="그룹 이름 정하기"
+        description="모임의 이름을 정해볼까요?"
+        label="그룹명"
+        placeholder="2024 제주도 여행"
+        value={groupName}
+        onChange={(e) => setGroupName(e.target.value)}
+        onSubmit={handleSubmit}
+        errorMessage={errorMessage}
+      />
     </MainContainer>
   );
 }
