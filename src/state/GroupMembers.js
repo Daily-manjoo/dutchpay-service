@@ -1,11 +1,11 @@
 import { atom } from "recoil";
 
 export const memberNameState = atom({
-  key: "memberName",
+  key: "memberNameState",
   default: "",
 });
 
-export const memberErrorMessageState = atom({
-  key: "memberErrorMessage",
-  default: "",
+export const membersListState = atom({
+  key: "membersListState",
+  default: [],
 });

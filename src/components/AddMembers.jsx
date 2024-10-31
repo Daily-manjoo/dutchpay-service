@@ -1,28 +1,34 @@
 import { useRecoilState } from "recoil";
-import { memberNameState } from "../state/GroupMembers";
+import { memberNameState, membersListState } from "../state/GroupMembers";
 import OverlayForm from "./OverlayForm";
 import styled from "styled-components";
 import { useState } from "react";
 
 export default function AddMembers() {
   const [memberName, setMemberName] = useRecoilState(memberNameState);
-  const [members, setMembers] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(""); // 에러 메시지 관리
+  const [members, setMembers] = useRecoilState(membersListState);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // 엔터 입력 시 멤버 추가 처리
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!memberName.trim()) {
       setErrorMessage("멤버 이름을 입력해주세요.");
-    } else {
-      setErrorMessage("");
-      // 멤버가 이미 추가되었는지 확인 후 추가
-      if (!members.includes(memberName)) {
-        setMembers([...members, memberName]); // 멤버 배열에 추가
-        setMemberName(""); // 입력 필드 초기화
-      } else {
-        setErrorMessage("이미 추가된 멤버입니다.");
-      }
+      return;
+    }
+
+    if (members.includes(memberName)) {
+      setErrorMessage("이미 추가된 멤버입니다.");
+      return;
+    }
+
+    setMembers([...members, memberName]); // 멤버 배열에 추가
+    setMemberName(""); // 입력 필드 초기화
+    setErrorMessage(""); // 에러 메시지 초기화
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e); // 엔터 키로 제출 시 handleSubmit 호출
     }
   };
 
@@ -41,8 +47,9 @@ export default function AddMembers() {
         value={memberName}
         onChange={(e) => setMemberName(e.target.value)}
         onSubmit={handleSubmit}
+        handleKeyDown={handleKeyDown} // 여기에서 핸들러 전달
         errorMessage={errorMessage}
-        members={members} // 멤버 목록을 OverlayForm에 전달
+        members={members}
         onDeleteMember={handleDeleteMember}
         id="input-member-names"
       />

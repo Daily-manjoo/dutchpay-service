@@ -12,6 +12,7 @@ export default function OverlayForm({
   errorMessage,
   members = [],
   onDeleteMember,
+  handleKeyDown,
 }) {
   return (
     <Container>
@@ -31,6 +32,7 @@ export default function OverlayForm({
             value={value}
             onChange={onChange}
             data-testid="input-member-names"
+            onKeyDown={handleKeyDown}
           />
           {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
           <TagContainer>
