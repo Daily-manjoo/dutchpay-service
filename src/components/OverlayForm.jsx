@@ -66,12 +66,13 @@ const Container = styled.div`
 `;
 
 const GroupImgDiv = styled.div`
-  margin: 40px;
+  margin: 40px auto;
   width: 332px;
   height: 141px;
   background-image: url("/dutchpay.jpg");
   background-size: cover;
   background-position: center;
+  flex-shrink: 0;
 `;
 
 const SetGroupForm = styled.form`
@@ -110,7 +111,11 @@ const GroupNameInput = styled.input`
 const TagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  max-height: 150px; // 태그 표시 영역에 최대 높이 설정
+  overflow-y: auto; // 태그가 넘치면 스크롤 가능하도록 설정
   margin-top: 10px;
+  justify-content: center; // 태그를 가운데 정렬
+  gap: 5px; // 태그 간 간격 추가
 `;
 
 const Tag = styled.span`
@@ -118,9 +123,9 @@ const Tag = styled.span`
   color: #333;
   border-radius: 15px;
   padding: 5px 10px;
-  margin: 5px;
   font-size: 14px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
 
   &:hover {
