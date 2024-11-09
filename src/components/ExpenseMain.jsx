@@ -1,19 +1,54 @@
+import styled from "styled-components";
 import AddExpenseForm from "./AddExpenseForm";
-import RightPannel from "./RightPannel";
+import { useRecoilValue } from "recoil";
+import { groupNameState } from "../state/GroupName";
+import ExpenseTable from "./ExpenseTable";
 
 export default function ExpenseMain() {
+  const groupName = useRecoilValue(groupNameState);
+
   return (
-    <div>
-      Expense Main Component
-      <div>
-        <AddExpenseForm></AddExpenseForm>
-      </div>
-      <div>
-        <RightPannel>
-          {/*TODO:그룹명 헤더**/}
-          {/*TODO:지출내역 렌더링**/}
-        </RightPannel>
-      </div>
-    </div>
+    <Container>
+      <LeftPane>
+        <AddExpenseForm />
+      </LeftPane>
+      <RightPane>
+        <ExpenseTable>{groupName}</ExpenseTable>
+      </RightPane>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  background-color: #f9f9f9;
+`;
+
+const LeftPane = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f4f0ff;
+`;
+
+const RightPane = styled.div`
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #ffffff;
+  border-left: 2px solid #e0e0e0;
+  overflow-y: auto;
+`;
+
+const GroupName = styled.h1`
+  font-size: 1.5rem;
+  color: #7749f8;
+  text-align: center;
+  font-weight: bold;
+`;

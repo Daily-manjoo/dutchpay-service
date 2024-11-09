@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { membersListState } from "../state/GroupMembers";
-import { expensesState } from "../state/expenses";
+import { expensesState } from "../state/Expenses";
 
 export default function AddExpenseForm() {
   const today = new Date();
@@ -19,8 +19,8 @@ export default function AddExpenseForm() {
   const [errors, setErrors] = useState({});
   const members = useRecoilValue(membersListState);
 
-  const expenses = useRecoilValue(expensesState); // 현재 expensesState 값을 가져옵니다
-  const setExpense = useSetRecoilState(expensesState); // expensesState를 업데이트하는 함수
+  const expenses = useRecoilValue(expensesState);
+  const setExpense = useSetRecoilState(expensesState);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,8 +34,6 @@ export default function AddExpenseForm() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      alert("비용이 성공적으로 추가되었습니다.");
-
       const newExpense = {
         date,
         desc,
@@ -43,22 +41,19 @@ export default function AddExpenseForm() {
         payer,
       };
 
-      setExpense((prevExpenses) => [...prevExpenses, newExpense]); // expensesState에 새 항목 추가
+      setExpense((prevExpenses) => [...prevExpenses, newExpense]);
+
+      setDesc("");
+      setAmount(0);
+      setPayer(null);
     } else {
-      alert("에러");
+      alert("다시 입력해주세요.");
     }
   };
 
   return (
     <FormContainer onSubmit={handleSubmit}>
       <Title>1. 비용 추가하기</Title>
-
-      {expenses.map((expense, index) => (
-        <span key={index}>
-          {expense.date}, {expense.desc}, {expense.payer}, {expense.amount}
-        </span>
-      ))}
-
       <InputContainer>
         <Label htmlFor="expenseDate">결제한 날짜를 선택해 주세요</Label>
         <Input
@@ -100,11 +95,12 @@ export default function AddExpenseForm() {
             onChange={(e) => setPayer(e.target.value)}
           >
             <option value="">선택하세요</option>
-            {members.map((member) => (
+            <option>유리</option>
+            {/* {members.map((member) => (
               <option key={member} value={member}>
                 {member}
               </option>
-            ))}
+            ))} */}
           </Select>
           {errors.payer && <ErrorText>{errors.payer}</ErrorText>}
         </InputContainer>
@@ -120,6 +116,7 @@ const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   background-color: #7749f8;
+  opacity: 0.8;
   padding: 20px;
   border-radius: 20px;
   width: 300px;
