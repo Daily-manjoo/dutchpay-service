@@ -1,4 +1,4 @@
-import LeftPannel from "./LeftPannel";
+import AddExpenseForm from "./AddExpenseForm";
 import RightPannel from "./RightPannel";
 
 export default function ExpenseMain() {
@@ -6,10 +6,7 @@ export default function ExpenseMain() {
     <div>
       Expense Main Component
       <div>
-        <LeftPannel>
-          {/*TODO: 비용추가 폼*/}
-          {/*TODO: 정산 결과 렌더링*/}
-        </LeftPannel>
+        <AddExpenseForm></AddExpenseForm>
       </div>
       <div>
         <RightPannel>
