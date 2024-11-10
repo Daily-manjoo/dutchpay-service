@@ -1,6 +1,7 @@
 import { useRecoilValue } from "recoil";
 import { expensesState } from "../state/Expenses";
 import { membersListState } from "../state/GroupMembers";
+import styled from "styled-components";
 
 export const calculateMinimumTransaction = (
   expenses,
@@ -86,27 +87,57 @@ export default function SettlementSummary() {
     splitAmount
   );
   return (
-    <div>
-      <h3>2. 정산은 이렇게!</h3>
+    <SummaryContainer>
+      <Title>2. 정산은 이렇게!</Title>
       {totalExpenseAmount > 0 && groupMembersCount > 0 && (
         <>
-          <span>
-            {groupMembersCount} 명이서 총 {totalExpenseAmount}원 지출
-          </span>
-          <br />
-          <span>한 사람 당 {splitAmount}원</span>
+          <SummaryText>
+            {groupMembersCount} 명이서 총 {totalExpenseAmount.toLocaleString()}
+            원 지출
+          </SummaryText>
+          <SummaryText>한 사람 당 {splitAmount.toLocaleString()}원</SummaryText>
 
-          <ul>
+          <TransactionList>
             {minimumTransaction.map(({ sender, receiver, amount }, index) => (
-              <li key={`transaction-${index}`}>
+              <TransactionItem key={`transaction-${index}`}>
                 <span>
-                  {sender}가 {receiver}에게 {amount}원 보내기
+                  {sender}가 {receiver}에게 {amount.toLocaleString()}원 보내기
                 </span>
-              </li>
+              </TransactionItem>
             ))}
-          </ul>
+          </TransactionList>
         </>
       )}
-    </div>
+    </SummaryContainer>
   );
 }
+
+const SummaryContainer = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
+
+const Title = styled.h3`
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+`;
+
+const SummaryText = styled.p`
+  font-size: 1rem;
+  color: #333;
+  margin: 5px 0;
+`;
+
+const TransactionList = styled.ul`
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: left;
+  margin: 10px 0 0;
+`;
+
+const TransactionItem = styled.li`
+  font-size: 1rem;
+  color: #333;
+  margin: 5px 0;
+`;

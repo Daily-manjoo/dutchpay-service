@@ -2,14 +2,16 @@ import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { expensesState } from "../state/Expenses";
 import OverlayWrapper from "./shared/OverlayWrapper";
+import { groupNameState } from "../state/GroupName";
 
 export default function ExpenseTable() {
   const expenses = useRecoilValue(expensesState);
+  const groupName = useRecoilValue(groupNameState);
 
   return (
     <OverlayWrapper>
       <TableContainer>
-        <Title>그룹 이름</Title>
+        <Title>{groupName} 영수증</Title>
         <StyledTable>
           <thead>
             <tr>
