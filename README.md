@@ -1,81 +1,100 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-# dutchpay-service
-모임 더치페이 서비스
-=======
->>>>>>> 2a32dcf (Initialize project using Create React App)
-# Getting Started with Create React App
+# 먹어도 먹어도 또 먹고 싶은 먹방 집합소 🍚
+![image](https://github.com/user-attachments/assets/e4154e00-483b-4c43-b5c5-5503e6868573)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+<br/>
 
-### `npm start`
+## 프로젝트 소개
+* Dutchpay-serivece는 정산하기 번거로워하는 사람들을 위해 더치페이를 간편하게 관리하고 공유할 수 있는 서비스입니다.
+* 사용자가 그룹을 만들고, 각 멤버가 부담한 비용을 기록하여 손쉽게 총 정산 금액과 각자의 부담 금액을 확인할 수 있습니다.
+* 각 그룹의 비용 내역을 테이 형태로 시각화하여 사용자들이 확인할 수 있으며, 그룹 멤버 간 정산 결과를 직관적으로 전달합니다.
+* 사용자가 그룹을 만들고, 각 멤버가 부담한 비용을 기록하여 손쉽게 총 정산 금액과 각자의 부담 금액을 확인할 수 있습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🖥️ Tech Stack
 
-### `npm test`
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <!-- React -->
+<img src="https://img.shields.io/badge/AWS Amplify-FF9900?style=flat-square&logo=aws-amplify&logoColor=white"/> <!-- AWS Amplify -->
+<img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=Jest&logoColor=white"/> <!-- Jest -->
+<img src="https://img.shields.io/badge/Recoil-3578E5?style=flat-square&logo=Recoil&logoColor=white"/> <!-- Recoil -->
+<img src="https://img.shields.io/badge/Styled Components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/> <!-- Styled Components -->
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
 
-### `npm run build`
+## Trouble Shooting
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<details>
+  <summary> Aws amplify 배포 시 babel-preset-react-app 에러 </summary>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  - 필요한 종속성(@babel/plugin-proposal-private-property-in-object)을 devDepedencies에 직접 추가하여 경고와 빌드 실패 해결. 이후 package.json 업데이트 후 npm install 실행
+  
+</details>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<details>
+  <summary> Recoil 적용 이후 Jest 테스트 실패 </summary>
 
-### `npm run eject`
+  - RecoilRoot를 Jest에 포함하고 Recoil을 사용하는 컴포넌트의 초기값 설정 후 테스트가 독립적을 실행되도록 수정
+  
+</details>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br/>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-<<<<<<< HEAD
-=======
->>>>>>> 35fc5a7 (Initialize project using Create React App)
->>>>>>> 2a32dcf (Initialize project using Create React App)
+## 프로젝트 구조
+```
+📦 
+├─ .github
+│  └─ pull_request_template.md
+├─ .gitignore
+├─ README.md
+├─ amplify.yml
+├─ amplify
+│  ├─ auth
+│  │  └─ resource.ts
+│  ├─ backend.ts
+│  ├─ data
+│  │  └─ resource.ts
+│  ├─ package.json
+│  └─ tsconfig.json
+├─ babel.config.json
+├─ jest.config.js
+├─ package-lock.json
+├─ package.json
+├─ public
+│  ├─ dutchpay.jpg
+│  ├─ favicon.ico
+│  ├─ index.html
+│  ├─ logo192.png
+│  ├─ logo512.png
+│  ├─ manifest.json
+│  └─ robots.txt
+└─ src
+   ├─ App.css
+   ├─ App.js
+   ├─ App.test.js
+   ├─ Route.js
+   ├─ components
+   │  ├─ AddExpenseForm.jsx
+   │  ├─ AddMembers.jsx
+   │  ├─ Addmemebers.spec.jsx
+   │  ├─ CreateGroup.jsx
+   │  ├─ CreateGroup.spec.jsx
+   │  ├─ ExpenseMain.jsx
+   │  ├─ ExpenseMain.spec.jsx
+   │  ├─ ExpenseTable.jsx
+   │  ├─ OverlayForm.jsx
+   │  ├─ SettlementSummary.jsx
+   │  └─ shared
+   │     └─ OverlayWrapper.jsx
+   ├─ index.css
+   ├─ index.js
+   ├─ logo.svg
+   ├─ reportWebVitals.js
+   ├─ setupTests.js
+   └─ state
+      ├─ Expenses.js
+      ├─ GroupMembers.js
+      └─ GroupName.js
+```
+©generated by [Project Tree Generator](https://woochanleee.github.io/project-tree-generator)
