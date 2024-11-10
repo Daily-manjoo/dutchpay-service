@@ -95,12 +95,11 @@ export default function AddExpenseForm() {
             onChange={(e) => setPayer(e.target.value)}
           >
             <option value="">선택하세요</option>
-            <option>유리</option>
-            {/* {members.map((member) => (
+            {members.map((member) => (
               <option key={member} value={member}>
                 {member}
               </option>
-            ))} */}
+            ))}
           </Select>
           {errors.payer && <ErrorText>{errors.payer}</ErrorText>}
         </InputContainer>
@@ -122,7 +121,7 @@ const FormContainer = styled.form`
   width: 300px;
 `;
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-size: 1.2rem;
   color: white;
   margin-bottom: 20px;

@@ -3,19 +3,24 @@ import AddExpenseForm from "./AddExpenseForm";
 import { useRecoilValue } from "recoil";
 import { groupNameState } from "../state/GroupName";
 import ExpenseTable from "./ExpenseTable";
+import SettlementSummary from "./SettlementSummary";
 
 export default function ExpenseMain() {
   const groupName = useRecoilValue(groupNameState);
 
   return (
-    <Container>
-      <LeftPane>
-        <AddExpenseForm />
-      </LeftPane>
-      <RightPane>
-        <ExpenseTable>{groupName}</ExpenseTable>
-      </RightPane>
-    </Container>
+    <>
+      <Container>
+        <LeftPane>
+          <h1>Dutch Pay</h1>
+          <AddExpenseForm />
+          <SettlementSummary />
+        </LeftPane>
+        <RightPane>
+          <ExpenseTable>{groupName}</ExpenseTable>
+        </RightPane>
+      </Container>
+    </>
   );
 }
 
@@ -29,10 +34,18 @@ const Container = styled.div`
 const LeftPane = styled.div`
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
   background-color: #f4f0ff;
+
+  h1 {
+    letter-spacing: 10px;
+    font-weight: 200;
+    color: slateblue;
+    text-align: center;
+  }
 `;
 
 const RightPane = styled.div`
