@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { groupNameState, errorMessageState } from "../state/GroupName";
 import OverlayForm from "./OverlayForm";
@@ -6,6 +7,7 @@ import styled from "styled-components";
 export default function CreateGroup() {
   const [groupName, setGroupName] = useRecoilState(groupNameState);
   const [errorMessage, setErrorMessage] = useRecoilState(errorMessageState);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +15,7 @@ export default function CreateGroup() {
       setErrorMessage("그룹명을 입력해주세요.");
     } else {
       setErrorMessage("");
-      // 추가 로직 (예: 서버로 데이터 전송 등)
+      navigate("/members", { state: { groupName } });
     }
   };
 

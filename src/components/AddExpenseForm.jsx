@@ -37,7 +37,7 @@ export default function AddExpenseForm() {
       const newExpense = {
         date,
         desc,
-        amount,
+        amount: Number(amount), // 여기서 amount를 숫자로 변환하여 저장
         payer,
       };
 
@@ -82,7 +82,7 @@ export default function AddExpenseForm() {
             type="number"
             placeholder="금액 입력"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => setAmount(Number(e.target.value))} // 입력 값을 숫자로 변환
           />
           {errors.amount && <ErrorText>{errors.amount}</ErrorText>}
         </InputContainer>

@@ -1,34 +1,46 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { memberNameState, membersListState } from "../state/GroupMembers";
 import OverlayForm from "./OverlayForm";
 import styled from "styled-components";
 import { useState } from "react";
+import { ROUTES } from "../Route";
 
 export default function AddMembers() {
+  const location = useLocation();
+  const groupName = location.state?.groupName || "";
   const [memberName, setMemberName] = useRecoilState(memberNameState);
   const [members, setMembers] = useRecoilState(membersListState);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!memberName.trim()) {
       setErrorMessage("멤버 이름을 입력해주세요.");
       return;
     }
-
     if (members.includes(memberName)) {
       setErrorMessage("이미 추가된 멤버입니다.");
       return;
     }
+    setMembers([...members, memberName]);
+    setMemberName("");
+    setErrorMessage("");
+  };
 
-    setMembers([...members, memberName]); // 멤버 배열에 추가
-    setMemberName(""); // 입력 필드 초기화
-    setErrorMessage(""); // 에러 메시지 초기화
+  const handleButtonClick = () => {
+    if (members.length > 0) {
+      navigate(ROUTES.EXPENSE_NAME);
+    } else {
+      setErrorMessage("최소 한 명 이상의 멤버를 추가해주세요.");
+    }
   };
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      handleSubmit(e); // 엔터 키로 제출 시 handleSubmit 호출
+      handleSubmit(e);
     }
   };
 
@@ -40,17 +52,18 @@ export default function AddMembers() {
     <MainContainer>
       <h1>Dutch Pay</h1>
       <OverlayForm
-        title="멤버 이름 입력"
+        title={`${groupName} 멤버 이름 입력`}
         description="추가할 멤버의 이름을 적어주세요."
         label="멤버명"
         placeholder="두 글자씩 적어주세요."
         value={memberName}
         onChange={(e) => setMemberName(e.target.value)}
         onSubmit={handleSubmit}
-        handleKeyDown={handleKeyDown} // 여기에서 핸들러 전달
+        handleKeyDown={handleKeyDown}
         errorMessage={errorMessage}
         members={members}
         onDeleteMember={handleDeleteMember}
+        onButtonClick={handleButtonClick} // 추가: 버튼 클릭 시 페이지 이동을 위한 핸들러 전달
         id="input-member-names"
       />
     </MainContainer>

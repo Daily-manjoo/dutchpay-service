@@ -13,6 +13,7 @@ export default function OverlayForm({
   members = [],
   onDeleteMember,
   handleKeyDown,
+  onButtonClick, // 추가: 버튼 클릭 시 이동을 위한 핸들러
 }) {
   return (
     <Container>
@@ -45,7 +46,11 @@ export default function OverlayForm({
               </Tag>
             ))}
           </TagContainer>
-          <GroupNameSaveButton type="submit" aria-label="저장하고 다음 단계로">
+          <GroupNameSaveButton
+            type="button" // 수정: 버튼 타입을 'button'으로 변경하여 onSubmit을 트리거하지 않음
+            onClick={onButtonClick} // 추가: 버튼 클릭 시 다음 페이지로 이동하는 핸들러
+            aria-label="저장하고 다음 단계로"
+          >
             <p>저장하고 다음 단계로</p>
           </GroupNameSaveButton>
         </SetGroupForm>
