@@ -5,7 +5,7 @@ import OverlayWrapper from "./shared/OverlayWrapper";
 import { groupNameState } from "../state/GroupName";
 
 export default function ExpenseTable() {
-  const [expenses, setExpenses] = useRecoilState(expensesState); // 삭제를 위해 useRecoilState 사용
+  const [expenses, setExpenses] = useRecoilState(expensesState);
   const groupName = useRecoilValue(groupNameState);
 
   // 삭제 핸들러 함수
@@ -25,7 +25,7 @@ export default function ExpenseTable() {
               <TableHeader>내용</TableHeader>
               <TableHeader>결제자</TableHeader>
               <TableHeader>금액</TableHeader>
-              <TableHeader></TableHeader> {/* 삭제 버튼 열 */}
+              <TableHeader></TableHeader>
             </tr>
           </thead>
           <TableBody hasData={expenses.length > 0}>
@@ -162,7 +162,6 @@ const TableCell = styled.td`
   }
 `;
 
-// 삭제 버튼 스타일
 const DeleteButton = styled.button`
   background: none;
   border: none;

@@ -13,8 +13,8 @@ const renderComponent = () => {
     </RecoilRoot>
   );
 
-  const input = screen.getByPlaceholderText("2024 제주도 여행"); //screen 메소드: CreateGroup이 렌더링되는 화면
-  const GroupNameSaveButton = screen.getByText("저장하고 다음 단계로"); //다시 필요한 부분
+  const input = screen.getByPlaceholderText("2024 제주도 여행");
+  const GroupNameSaveButton = screen.getByText("저장하고 다음 단계로");
   const errorMessage = screen.queryByText("모임명을 입력해주세요.");
 
   return {
