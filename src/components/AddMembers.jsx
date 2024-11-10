@@ -32,6 +32,7 @@ export default function AddMembers() {
 
   const handleButtonClick = () => {
     if (members.length > 0) {
+      console.log(ROUTES);
       navigate(ROUTES.EXPENSE_MAIN);
     } else {
       setErrorMessage("최소 한 명 이상의 멤버를 추가해주세요.");

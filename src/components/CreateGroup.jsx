@@ -31,6 +31,7 @@ export default function CreateGroup() {
         onChange={(e) => setGroupName(e.target.value)}
         onSubmit={handleSubmit}
         errorMessage={errorMessage}
+        onButtonClick={handleSubmit}
       />
     </MainContainer>
   );
