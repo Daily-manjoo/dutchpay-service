@@ -63,7 +63,7 @@ export default function AddMembers() {
         errorMessage={errorMessage}
         members={members}
         onDeleteMember={handleDeleteMember}
-        onButtonClick={handleButtonClick} // 추가: 버튼 클릭 시 페이지 이동을 위한 핸들러 전달
+        onButtonClick={handleButtonClick}
         id="input-member-names"
       />
     </MainContainer>

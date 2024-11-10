@@ -13,7 +13,7 @@ export default function OverlayForm({
   members = [],
   onDeleteMember,
   handleKeyDown,
-  onButtonClick, // 추가: 버튼 클릭 시 이동을 위한 핸들러
+  onButtonClick,
 }) {
   return (
     <Container>
@@ -47,8 +47,8 @@ export default function OverlayForm({
             ))}
           </TagContainer>
           <GroupNameSaveButton
-            type="button" // 수정: 버튼 타입을 'button'으로 변경하여 onSubmit을 트리거하지 않음
-            onClick={onButtonClick} // 추가: 버튼 클릭 시 다음 페이지로 이동하는 핸들러
+            type="button"
+            onClick={onButtonClick}
             aria-label="저장하고 다음 단계로"
           >
             <p>저장하고 다음 단계로</p>
@@ -116,11 +116,11 @@ const GroupNameInput = styled.input`
 const TagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-height: 150px; // 태그 표시 영역에 최대 높이 설정
-  overflow-y: auto; // 태그가 넘치면 스크롤 가능하도록 설정
+  max-height: 150px;
+  overflow-y: auto;
   margin-top: 10px;
-  justify-content: center; // 태그를 가운데 정렬
-  gap: 5px; // 태그 간 간격 추가
+  justify-content: center;
+  gap: 5px;
 `;
 
 const Tag = styled.span`
