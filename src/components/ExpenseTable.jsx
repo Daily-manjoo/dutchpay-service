@@ -8,7 +8,6 @@ export default function ExpenseTable() {
   const [expenses, setExpenses] = useRecoilState(expensesState);
   const groupName = useRecoilValue(groupNameState);
 
-  // 삭제 핸들러 함수
   const handleDelete = (index) => {
     const updatedExpenses = expenses.filter((_, i) => i !== index);
     setExpenses(updatedExpenses);
@@ -49,7 +48,6 @@ export default function ExpenseTable() {
   );
 }
 
-// 애니메이션 정의
 const slideUp = keyframes`
   0% {
     transform: translateY(100px);
