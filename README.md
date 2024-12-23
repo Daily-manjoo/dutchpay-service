@@ -6,6 +6,9 @@
 <br/>
 
 ## 프로젝트 소개
+
+https://www.figma.com/design/zQkVC15QseKAwGGQPi4Qnp/Bootstrap-5-UI-Kit-(Community)?node-id=139-170&t=gzG9OvTJ8cRs6v65-1
+
 * Dutchpay-serivece는 정산하기 번거로워하는 사람들을 위해 더치페이를 간편하게 관리하고 공유할 수 있는 서비스입니다.
 * 사용자가 그룹을 만들고, 각 멤버가 부담한 비용을 기록하여 손쉽게 총 정산 금액과 각자의 부담 금액을 확인할 수 있습니다.
 * 각 그룹의 비용 내역을 테이 형태로 시각화하여 사용자들이 확인할 수 있으며, 그룹 멤버 간 정산 결과를 직관적으로 전달합니다.
