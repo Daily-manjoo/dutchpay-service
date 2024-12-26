@@ -9,7 +9,7 @@ export const calculateMinimumTransaction = (
   amountPerPerson
 ) => {
   const minTransactions = [];
-  if (amountPerPerson === 0) {
+  if (amountPerPerson === 0 || isNaN(amountPerPerson)) {
     return minTransactions;
   }
 
@@ -20,21 +20,20 @@ export const calculateMinimumTransaction = (
   });
 
   // 2. 사람별로 냈어야 할 금액 업데이트
-
   expenses.forEach(({ payer, amount }) => {
-    membersToPay[payer] -= amount;
+    membersToPay[payer] -= amount || 0; // amount가 undefined인 경우 0으로 처리
   });
 
   // 3. 오름차순으로 소팅
   const sortedMembersToPay = Object.keys(membersToPay)
     .map((member) => ({
       member: member,
-      amount: membersToPay[member],
+      amount: membersToPay[member] || 0, // undefined 방지
     }))
     .sort((a, b) => a.amount - b.amount);
 
-  var left = 0;
-  var right = sortedMembersToPay.length - 1;
+  let left = 0;
+  let right = sortedMembersToPay.length - 1;
   while (left < right) {
     while (left < right && sortedMembersToPay[left].amount === 0) {
       left++;
@@ -42,6 +41,7 @@ export const calculateMinimumTransaction = (
     while (left < right && sortedMembersToPay[right].amount === 0) {
       right--;
     }
+
     const toReceive = sortedMembersToPay[left];
     const toSend = sortedMembersToPay[right];
     const amountToReceive = Math.abs(toReceive.amount);
@@ -51,7 +51,7 @@ export const calculateMinimumTransaction = (
       minTransactions.push({
         receiver: toReceive.member,
         sender: toSend.member,
-        amount: amountToReceive,
+        amount: amountToReceive || 0, // undefined 방지
       });
       toReceive.amount = 0;
       toSend.amount -= amountToReceive;
@@ -60,7 +60,7 @@ export const calculateMinimumTransaction = (
       minTransactions.push({
         receiver: toReceive.member,
         sender: toSend.member,
-        mount: amountToSend,
+        amount: amountToSend || 0, // undefined 방지
       });
       toSend.amount = 0;
       toReceive.amount += amountToSend;
@@ -75,17 +75,18 @@ export default function SettlementSummary() {
   const expenses = useRecoilValue(expensesState);
   const members = useRecoilValue(membersListState);
   const totalExpenseAmount = expenses.reduce(
-    (prevAmount, curExpense) => prevAmount + curExpense.amount,
+    (prevAmount, curExpense) => prevAmount + (curExpense.amount || 0), // undefined 방지
     0
   );
   const groupMembersCount = members.length;
-  const splitAmount = totalExpenseAmount / groupMembersCount;
+  const splitAmount = Math.round(totalExpenseAmount / groupMembersCount) || 0; // undefined 방지
 
   const minimumTransaction = calculateMinimumTransaction(
     expenses,
     members,
     splitAmount
   );
+
   return (
     <SummaryContainer>
       <Title>2. 정산은 이렇게!</Title>
@@ -101,7 +102,8 @@ export default function SettlementSummary() {
             {minimumTransaction.map(({ sender, receiver, amount }, index) => (
               <TransactionItem key={`transaction-${index}`}>
                 <span>
-                  {sender}가 {receiver}에게 {amount.toLocaleString()}원 보내기
+                  {sender}가 {receiver}에게{" "}
+                  {Math.round(amount || 0).toLocaleString()}원 보내기
                 </span>
               </TransactionItem>
             ))}

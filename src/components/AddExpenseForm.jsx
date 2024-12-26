@@ -19,7 +19,6 @@ export default function AddExpenseForm() {
   const [errors, setErrors] = useState({});
   const members = useRecoilValue(membersListState);
 
-  const expenses = useRecoilValue(expensesState);
   const setExpense = useSetRecoilState(expensesState);
 
   const handleSubmit = (e) => {
@@ -37,7 +36,7 @@ export default function AddExpenseForm() {
       const newExpense = {
         date,
         desc,
-        amount: Number(amount), // 여기서 amount를 숫자로 변환하여 저장
+        amount: Number(amount),
         payer,
       };
 
@@ -82,7 +81,7 @@ export default function AddExpenseForm() {
             type="number"
             placeholder="금액 입력"
             value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))} // 입력 값을 숫자로 변환
+            onChange={(e) => setAmount(Number(e.target.value) || 0)}
           />
           {errors.amount && <ErrorText>{errors.amount}</ErrorText>}
         </InputContainer>
