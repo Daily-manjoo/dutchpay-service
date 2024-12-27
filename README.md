@@ -41,23 +41,36 @@
 </details>
 
 <details>
-  <summary> Aws amplify 배포 시 babel-preset-react-app 에러 </summary>
 
-  - 필요한 종속성(@babel/plugin-proposal-private-property-in-object)을 devDepedencies에 직접 추가하여 경고와 빌드 실패 해결. 이후 package.json 업데이트 후 npm install 실행
+  ![image](https://github.com/user-attachments/assets/efd1ad94-f83a-4e71-923b-69b2e0b1ce81)
+
+  <summary> SEO 및 성능 개선을 위한 리디렉션 정리 </summary>
+
+  - AWS Amplify에서 슬래시(/)가 없는 경로를 디렉토리로 간주하고 자동으로 슬래시를 추가하므로 명확한 리디렉션 규칙 생성 필요요
+  - AWS 다시쓰기 및 리디렉션 탭에서 루트 경로(/) 및 다른 경로(/expenses)에서도 동일한 문제가 발생하지 않도록 추가 설정
   
 </details>
 
 <details>
-  <summary> Aws amplify 배포 실패 </summary>
+  <summary> Aws amplify 배포 시 babel-preset-react-app 에러 </summary>
 
-  - AWS Systems Manager -> 파라미터 스토어 내부에서 발급받은 액세스 키와 비밀 액세스 키 추가
+  - 에러 로그 확인 후 필요한 종속성(@babel/plugin-proposal-private-property-in-object)을 devDepedencies에 직접 추가하여 경고와 빌드 실패 해결
+  - package.json 업데이트 후 npm install 실행
+  
+</details>
+
+
+<details>
+  <summary> Aws amplify 배포 시 환경 변수 접근 실패 </summary>
+
+  - WS Systems Manager → Parameter Store에 접속하여 필요한 액세스 키와 비밀 액세스 키를 각각 추가하고 Amplify 환경 변수 설정에서 이를 참조하도록 설정
   
 </details>
 
 <details>
   <summary> Recoil 적용 이후 Jest 테스트 실패 </summary>
 
-  - RecoilRoot를 Jest에 포함하고 Recoil을 사용하는 컴포넌트의 초기값 설정 후 테스트가 독립적을 실행되도록 수정
+  - Jest 테스트 환경에 RecoilRoot를 추가하고, Recoil 상태의 초기값을 테스트마다 독립적으로 설정하도록 수정하고 이를 통해 Recoil 상태가 다른 테스트에 영향을 미치지 않도록 보장
   
 </details>
 
