@@ -74,7 +74,7 @@ const GroupImgDiv = styled.div`
   margin: 40px auto;
   width: 332px;
   height: 141px;
-  background-image: url("/dutchpay.jpg");
+  background-image: url("/dutchpay.webp");
   background-size: cover;
   background-position: center;
   flex-shrink: 0;
