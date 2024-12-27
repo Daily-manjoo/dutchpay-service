@@ -30,6 +30,17 @@
 ## Trouble Shooting
 
 <details>
+
+![image](https://github.com/user-attachments/assets/075f4ee3-f044-4e0d-8bcf-42ebab41205b)
+
+  <summary> LightHouse 이미지 최적화를 통한 성능 개선 </summary>
+
+  - 기존 JPEG 이미지(186KB)를 차세대 형식인 WebP 형식(68.5KB)로 변환 -> 데이터 절감량: 117.5KB(약 63% 감소).
+  - 페이지 로딩 속도 최적화 및 Lighthouse 성능 점수 향상
+    
+</details>
+
+<details>
   <summary> Aws amplify 배포 시 babel-preset-react-app 에러 </summary>
 
   - 필요한 종속성(@babel/plugin-proposal-private-property-in-object)을 devDepedencies에 직접 추가하여 경고와 빌드 실패 해결. 이후 package.json 업데이트 후 npm install 실행
