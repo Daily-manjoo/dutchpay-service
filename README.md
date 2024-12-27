@@ -45,8 +45,9 @@
 
 <details>
 
-  ![image](https://github.com/user-attachments/assets/efd1ad94-f83a-4e71-923b-69b2e0b1ce81)
-
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/efd1ad94-f83a-4e71-923b-69b2e0b1ce81" alt="리디렉션 정리 이미지" width="600"/>
+  </p>
   <summary> SEO 및 성능 개선을 위한 리디렉션 정리 </summary>
 
   - AWS Amplify에서 슬래시(/)가 없는 경로를 디렉토리로 간주하고 자동으로 슬래시를 추가하므로 명확한 리디렉션 규칙 생성 필요
