@@ -7,12 +7,13 @@
 
 ## 프로젝트 소개
 
-https://www.figma.com/design/zQkVC15QseKAwGGQPi4Qnp/Bootstrap-5-UI-Kit-(Community)?node-id=139-170&t=gzG9OvTJ8cRs6v65-1
 
 * Dutchpay-serivece는 정산하기 번거로워하는 사람들을 위해 더치페이를 간편하게 관리하고 공유할 수 있는 서비스입니다.
 * 사용자가 그룹을 만들고, 각 멤버가 부담한 비용을 기록하여 손쉽게 총 정산 금액과 각자의 부담 금액을 확인할 수 있습니다.
 * 각 그룹의 비용 내역을 테이 형태로 시각화하여 사용자들이 확인할 수 있으며, 그룹 멤버 간 정산 결과를 직관적으로 전달합니다.
 * 사용자가 그룹을 만들고, 각 멤버가 부담한 비용을 기록하여 손쉽게 총 정산 금액과 각자의 부담 금액을 확인할 수 있습니다.
+
+![dutchpay](https://github.com/user-attachments/assets/85c0f9a3-ab1a-4af0-b4de-6563821e9b45)
 
 <br/>
 
@@ -32,6 +33,13 @@ https://www.figma.com/design/zQkVC15QseKAwGGQPi4Qnp/Bootstrap-5-UI-Kit-(Communit
   <summary> Aws amplify 배포 시 babel-preset-react-app 에러 </summary>
 
   - 필요한 종속성(@babel/plugin-proposal-private-property-in-object)을 devDepedencies에 직접 추가하여 경고와 빌드 실패 해결. 이후 package.json 업데이트 후 npm install 실행
+  
+</details>
+
+<details>
+  <summary> Aws amplify 배포 실패 </summary>
+
+  - AWS Systems Manager -> 파라미터 스토어 내부에서 발급받은 액세스 키와 비밀 액세스 키 추가
   
 </details>
 
